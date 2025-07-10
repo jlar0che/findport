@@ -78,4 +78,4 @@ Standard GNU tools:
 
 ## 🙌 Thanks
 
-Shoutout to PortNote for being a fantastic port documentation tool and the inspiration for this script.
+Shoutout to [PortNote](https://github.com/crocofied/PortNote) for being a fantastic port documentation tool and the inspiration for this script.
