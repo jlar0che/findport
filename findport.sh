@@ -3,7 +3,7 @@ set -euo pipefail # turn on “strict mode” for Bash so the script fails fast 
 echo ""
 
 # --------------------------------------------
-# findport.sh v2.0
+# findport.sh v2.0 | by Jacques Laroche
 # Searches for a port inside docker-compose.yml files
 # ONLY one directory deep (./<dir>/docker-compose.yml),
 # with a live progress bar.
