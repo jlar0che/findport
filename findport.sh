@@ -3,7 +3,7 @@ set -euo pipefail # turn on “strict mode” for Bash so the script fails fast 
 echo ""
 
 # --------------------------------------------
-# findport.sh v2.0 | by Jacques Laroche
+# findport.sh v2.1 | by Jacques Laroche
 # Searches for a port inside docker-compose.yml files
 # ONLY one directory deep (./<dir>/docker-compose.yml),
 # with a live progress bar.
@@ -44,7 +44,7 @@ fi
 mapfile -d '' FILES < <(
   find . \
     -mindepth 2 -maxdepth 2 \
-    -type f -name "docker-compose.yml" \
+	-type f \( -name "docker-compose.yml" -o -name "docker-compose.yaml" \) \
     -not -path "./portainer/*" \
     -print0
 )
@@ -52,7 +52,7 @@ mapfile -d '' FILES < <(
 # Returning no results (if there are no docker-compose.yml files at all)
 TOTAL=${#FILES[@]}
 if [[ $TOTAL -eq 0 ]]; then
-  echo "No docker-compose.yml files found (excluding ./portainer/)."
+  echo "No docker-compose (YAML) files found (excluding ./portainer/)."
   exit 0
 fi
 
@@ -82,7 +82,7 @@ show_progress() {
 }
 # PROGRESS BAR [END] ----------------------------------------------
 
-echo "Searching for port $PORT in $TOTAL docker-compose.yml file(s) ..."
+echo "Searching for port $PORT in $TOTAL docker-compose file(s) ..."
 
 TMP_OUT="$(mktemp)"
 trap 'rm -f "$TMP_OUT"' EXIT
